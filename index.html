@@ -3,622 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trắc Nghiệm Định Hướng Tổ Hợp Môn Lớp 10</title>
+    <title>Trắc Nghiệm Hướng Nghiệp Tuyển Sinh 10</title>
     <style>
         :root {
-            --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            --bg-body: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #475569;
-            --border: #e2e8f0;
-            --primary-color: #4f46e5;
+            --primary-color: #0068ff;
+            --bg-color: #f4f7fa;
+            --text-color: #333;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
+        
         body {
-            background: var(--bg-body);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 24px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
         }
 
         .container {
-            background-color: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-            width: 100%;
-            max-width: 720px;
-            padding: 40px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            max-width: 650px;
+            background: #ffffff;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .hidden {
-            display: none !important;
-        }
-
-        /* Hero / Welcome Screen */
-        .welcome-screen {
+        h1 {
             text-align: center;
-        }
-
-        .welcome-screen h1 {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .welcome-screen p {
-            color: var(--text-sub);
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 540px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Progress Bar */
-        .progress-wrapper {
-            margin-bottom: 32px;
-        }
-
-        .progress-bar {
-            background-color: var(--border);
-            height: 6px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: var(--gradient-primary);
-            height: 100%;
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-            font-size: 13px;
-            color: var(--text-sub);
-            font-weight: 500;
-        }
-
-        /* Quiz Controls */
-        .question-title {
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 1.4;
-            margin-bottom: 24px;
-            color: var(--text-main);
-        }
-
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .option-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 18px 24px;
-            text-align: left;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
-        }
-
-        .option-card:hover {
-            border-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.02);
-            transform: translateY(-1px);
-        }
-
-        .option-card.active {
-            border-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.06);
             color: var(--primary-color);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
-        .actions-bar {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 36px;
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
         }
 
-        /* General Button Style */
-        .btn {
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 15px;
+        .quiz-section {
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        .question {
+            font-size: 18px;
             font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .option-item {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
-        }
-
-        .btn:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
-        }
-
-        .btn:disabled {
-            background: var(--border);
-            color: var(--text-sub);
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-sub);
-            border: 2px solid var(--border);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: #f1f5f9;
-            color: var(--text-main);
-            border-color: #cbd5e1;
-        }
-
-        /* Result Screen */
-        .result-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .result-header h2 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-sub);
-            margin-bottom: 6px;
-        }
-
-        .main-ban {
-            font-size: 26px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .ban-description {
             font-size: 15px;
-            line-height: 1.6;
-            color: var(--text-sub);
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 14px;
-            margin-bottom: 32px;
-            border-left: 5px solid var(--primary-color);
         }
 
-        /* Charts styling */
-        .chart-block {
-            margin-bottom: 36px;
+        .option-item:hover {
+            background: #eef3ff;
+            border-color: var(--primary-color);
         }
 
-        .chart-headline {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .option-item.selected {
+            background: #e0ecff;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
-        .bar-row {
-            margin-bottom: 14px;
-        }
-
-        .bar-label {
+        .buttons {
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 6px;
+            margin-top: 25px;
         }
 
-        .bar-bg {
-            background: var(--border);
-            height: 10px;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: 20px;
-            width: 0%;
-            transition: width 1s cubic-bezier(0.1, 1, 0.1, 1);
-        }
-
-        /* Gợi ý tổ hợp môn học chi tiết */
-        .tohop-block {
-            margin-top: 32px;
-            border-top: 1px dashed var(--border);
-            padding-top: 28px;
-            margin-bottom: 32px;
-        }
-
-        .tohop-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tohop-box {
-            background: #fffdf5;
-            border: 1px solid #fef08a;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-        }
-
-        .tohop-box-name {
-            font-weight: 700;
-            color: #b45309;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .tohop-box-list {
-            font-size: 15px;
-            color: var(--text-main);
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
             font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
         }
 
-        .tohop-box-note {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 4px;
-            font-style: italic;
+        .btn-next {
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+        }
+
+        .btn-next:hover {
+            background-color: #0056d6;
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .result-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .result-desc {
+            font-size: 16px;
+            color: #495057;
+            margin-bottom: 25px;
+            text-align: left;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        /* Khung hiển thị QR Code hỗ trợ */
+        .qr-support-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 2px dashed var(--primary-color);
+            background-color: #f4f7fa;
+            border-radius: 10px;
+        }
+
+        .qr-support-container p {
+            margin: 5px 0;
+        }
+
+        .qr-image {
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--primary-color);
+            padding: 5px;
+            border-radius: 8px;
+            background: white;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="start-screen" class="welcome-screen">
-            <h1>Định Hướng Khối & Tổ Hợp Lớp 10</h1>
-            <p>Khảo sát thông minh gồm 8 câu hỏi chuyên sâu giúp bạn xác định rõ nét năng lực tư duy, hỗ trợ đưa ra mô hình tổ hợp 4 môn lựa chọn tối ưu nhất cho chặng đường THPT.</p>
-            <button class="btn" onclick="startQuiz()">Bắt đầu đánh giá</button>
-        </div>
+<div class="container">
+    <h1>TRẮC NGHIỆM HƯỚNG NGHIỆP LỚP 10</h1>
+    <div class="subtitle">Dành cho phụ huynh và học sinh lựa chọn tổ hợp môn học</div>
 
-        <div id="quiz-screen" class="hidden">
-            <div class="progress-wrapper">
-                <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
-                <div class="progress-info">
-                    <span id="progress-text">Câu 1 trên 8</span>
-                    <span id="progress-percent">0%</span>
-                </div>
-            </div>
-            
-            <div id="question-text" class="question-title">Nội dung câu hỏi hiển thị tại đây?</div>
-            <div id="options-grid" class="options-grid"></div>
-
-            <div class="actions-bar">
-                <button id="prev-btn" class="btn btn-outline" onclick="prevQuestion()" disabled>Quay lại</button>
-                <button id="next-btn" class="btn" onclick="nextQuestion()" disabled>Tiếp tục</button>
+    <!-- Vùng làm câu hỏi trắc nghiệm -->
+    <div id="quiz-container">
+        <!-- Câu hỏi 1 -->
+        <div class="quiz-section active" id="q1">
+            <div class="question">Câu 1: Bạn cảm thấy mình có thế mạnh hoặc yêu thích nhóm môn học nào nhất dưới đây?</div>
+            <ul class="options">
+                <li class="option-item" onclick="selectOption('q1', 'A', this)">A. Toán, Vật lí, Hóa học, Tin học</li>
+                <li class="option-item" onclick="selectOption('q1', 'B', this)">B. Sinh học, Hóa học, Lịch sử, Địa lí</li>
+                <li class="option-item" onclick="selectOption('q1', 'C', this)">C. Ngữ văn, Lịch sử, Địa lí, Giáo dục KT-PL</li>
+                <li class="option-item" onclick="selectOption('q1', 'D', this)">D. Mỹ thuật, Âm nhạc, Công nghệ, Thể chất</li>
+            </ul>
+            <div class="buttons">
+                <button class="btn-next" onclick="nextQuestion(1)">Tiếp theo</button>
             </div>
         </div>
 
-        <div id="result-screen" class="hidden">
-            <div class="result-header">
-                <h2>Kết quả phân tích xu hướng</h2>
-                <div id="main-ban" class="main-ban">Tên Ban Phù Hợp</div>
-            </div>
-            
-            <div id="ban-description" class="ban-description">Mô tả định hướng chi tiết...</div>
-
-            <div class="chart-block">
-                <div class="chart-headline">Độ tương thích tổng quan:</div>
-                <div id="chart-content"></div>
-            </div>
-
-            <div class="tohop-block">
-                <div class="tohop-title">💡 Gợi ý các mô hình tổ hợp môn thực tế lớp 10:</div>
-                <div id="tohop-list"></div>
-            </div>
-
-            <div style="text-align: center;">
-                <button class="btn btn-outline" onclick="restartQuiz()">Thực hiện lại khảo sát</button>
+        <!-- Câu hỏi 2 -->
+        <div class="quiz-section" id="q2">
+            <div class="question">Câu 2: Kiểu công việc nào sau đây khiến bạn cảm thấy hứng thú nhất khi hình dung về tương lai?</div>
+            <ul class="options">
+                <li class="option-item" onclick="selectOption('q2', 'A', this)">A. Nghiên cứu, lập trình, chế tạo thiết bị hoặc phân tích dữ liệu</li>
+                <li class="option-item" onclick="selectOption('q2', 'B', this)">B. Chăm sóc sức khỏe, nghiên cứu môi trường, nông nghiệp công nghệ cao</li>
+                <li class="option-item" onclick="selectOption('q2', 'C', this)">C. Viết lách, truyền thông, quản trị kinh doanh, luật sư hoặc giảng dạy</li>
+                <li class="option-item" onclick="selectOption('q2', 'D', this)">D. Thiết kế đồ họa, sáng tạo nội dung nghệ thuật, tổ chức sự kiện</li>
+            </ul>
+            <div class="buttons">
+                <button class="btn-next" onclick="showResult()">Xem kết quả</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Hệ thống dữ liệu 8 câu hỏi trắc nghiệm
-        const questions = [
-            {
-                text: "1. Trong các tình huống giải quyết vấn đề cá nhân hoặc bài tập, phương pháp tư duy nào khiến bạn cảm thấy tự tin nhất?",
-                options: [
-                    { text: "Bóc tách dữ liệu, xâu chuỗi logic và giải mã bằng các công thức chính xác.", scores: { tuNghien: 3, kinhTe: 1 } },
-                    { text: "Lắng nghe, thấu hiểu tâm lý, phân tích hành vi con người và diễn đạt bằng ngôn từ.", scores: { xaHoi: 3 } },
-                    { text: "Quan sát trực quan, phân tích cấu tạo, cơ chế sống hoặc các thí nghiệm vật chất thực tế.", scores: { sucKhoe: 3 } },
-                    { text: "Lên kế hoạch quản lý thời gian, tối ưu quy trình hoặc tổ chức làm việc nhóm.", scores: { kinhTe: 3, tuNghien: 1 } }
-                ]
-            },
-            {
-                text: "2. Hãy tự đánh giá phản xạ tự nhiên của bạn đối với nhóm môn học Khoa học tự nhiên tính toán (Toán, Vật lý)?",
-                options: [
-                    { text: "Rất nhạy bén, thích suy luận tìm ra nhiều cách giải mới và điểm số luôn top đầu.", scores: { tuNghien: 3, kinhTe: 2 } },
-                    { text: "Cần thời gian nghiền ngẫm dài hoặc đi học thêm chu đáo mới có thể hoàn thành tốt bài tập.", scores: { kinhTe: 1, sucKhoe: 2 } },
-                    { text: "Cực kỳ chật vật, mất nhiều năng lượng và thường chỉ học để đạt mức an toàn.", scores: { xaHoi: 3 } }
-                ]
-            },
-            {
-                text: "3. Khả năng ghi nhớ dữ kiện hệ thống, viết luận hoặc khả năng cảm thụ (Ngữ văn, Lịch sử, Địa lý) của bạn thế nào?",
-                options: [
-                    { text: "Diễn đạt tốt, thích lập luận sắc bén và ghi nhớ sâu chuỗi các sự kiện xã hội.", scores: { xaHoi: 3, kinhTe: 2 } },
-                    { text: "Chỉ ghi nhớ máy móc để đối phó vượt qua kỳ thi, ít khi chủ động tìm hiểu sâu thêm.", scores: { tuNghien: 1, sucKhoe: 1 } },
-                    { text: "Rất ngại viết dài, ngại học thuộc lòng các nội dung dài dòng lý thuyết.", scores: { tuNghien: 3, sucKhoe: 2 } }
-                ]
-            },
-            {
-                text: "4. Khi làm việc hoặc thực hiện một dự án học tập nhỏ, vai trò nào thường đem lại cho bạn nhiều hứng thú nhất?",
-                options: [
-                    { text: "Chuyên gia kỹ thuật: Thiết kế mô hình, lập trình máy tính hoặc xử lý thông số.", scores: { tuNghien: 4 } },
-                    { text: "Nhà nghiên cứu: Thu thập mẫu, phân tích chất lượng sinh-hóa, hoặc chăm sóc sức khỏe.", scores: { sucKhoe: 4 } },
-                    { text: "Trưởng nhóm điều phối: Quản lý ngân sách, lên chiến lược, thuyết trình thuyết phục.", scores: { kinhTe: 4 } },
-                    { text: "Người truyền thông/Nội dung: Biên soạn tài liệu, biên tập nội dung, kết nối nhân sự.", scores: { xaHoi: 4 } }
-                ]
-            },
-            {
-                text: "5. Năng lực học Ngoại ngữ (Tiếng Anh hoặc ngôn ngữ khác) đóng vai trò thế nào trong lộ trình học của bạn?",
-                options: [
-                    { text: "Là thế mạnh lớn của tôi, tôi muốn dùng ngoại ngữ làm công cụ cốt lõi để làm việc quốc tế.", scores: { kinhTe: 3, xaHoi: 2 } },
-                    { text: "Học ở mức khá ổn, bổ trợ tốt cho việc đọc tài liệu chuyên ngành khoa học tính toán.", scores: { tuNghien: 2, sucKhoe: 2 } },
-                    { text: "Học bình thường, không quá nổi trội và cần cố gắng tích lũy thêm.", scores: { xaHoi: 1 } }
-                ]
-            },
-            {
-                text: "6. Môi trường làm việc dài hạn nào trong tương lai khiến bạn cảm giác có nhiều năng lượng nhất?",
-                options: [
-                    { text: "Các tập đoàn công nghệ, phòng nghiên cứu số hóa hoặc xưởng kỹ thuật cao.", scores: { tuNghien: 3 } },
-                    { text: "Bệnh viện, viện thẩm mỹ, trung tâm y tế hoặc viện nghiên cứu sinh học môi trường.", scores: { sucKhoe: 3 } },
-                    { text: "Văn phòng doanh nghiệp năng động, sàn giao dịch tài chính hoặc bộ phận Marketing sáng tạo.", scores: { kinhTe: 3 } },
-                    { text: "Tòa án, cơ quan báo chí truyền thông, trường học hoặc tổ chức phi chính phủ.", scores: { xaHoi: 3 } }
-                ]
-            },
-            {
-                text: "7. Bạn đối phó với áp lực khối lượng kiến thức cần dung nạp như thế nào?",
-                options: [
-                    { text: "Sẵn sàng ngồi hàng giờ giải bài tập hóc búa, tư duy nặng đô miễn tìm ra câu trả lời.", scores: { tuNghien: 3, sucKhoe: 2 } },
-                    { text: "Thích học bài qua sơ đồ tư duy, liên hệ thực tế đời sống kinh tế xã hội xung quanh.", scores: { kinhTe: 3, xaHoi: 2 } },
-                    { text: "Có khả năng đọc và ghi nhớ lượng văn bản tài liệu khổng lồ nhanh chóng.", scores: { xaHoi: 3 } }
-                ]
-            },
-            {
-                text: "8. Mục tiêu định hướng trường đại học hoặc khối thi mà bạn đang hướng tới là gì?",
-                options: [
-                    { text: "Khối ngành Kỹ thuật, Công nghệ thông tin, tự động hóa (Ưu tiên khối A00, A01).", scores: { tuNghien: 4 } },
-                    { text: "Khối ngành Y Nha Dược, Thú y, Công nghệ thực phẩm (Ưu tiên khối B00).", scores: { sucKhoe: 4 } },
-                    { text: "Khối ngành Kinh tế, Quản trị, Tài chính, Truyền thông số (Ưu tiên khối D01, A01).", scores: { kinhTe: 4 } },
-                    { text: "Khối ngành Luật, Ngoại giao, Sư phạm, Ngôn ngữ, Văn hóa học (Ưu tiên khối C00, D01).", scores: { xaHoi: 4 } }
-                ]
-            }
-        ];
-
-        // Dữ liệu hiển thị chi tiết và gợi ý tổ hợp môn lựa chọn (4 môn)
-        const banDetails = {
-            tuNghien: {
-                title: "BAN KHOA HỌC TỰ NHIÊN (Định hướng Kỹ thuật & Công nghệ)",
-                desc: "Bạn có năng lực tư duy logic cấu trúc vượt trội. Giai đoạn cấp 3 là bệ phóng tốt để bạn tập trung sâu vào nhóm môn tư duy định lượng để chuẩn bị cho kỷ nguyên số hóa.",
-                color: "#4f46e5",
-                tohop: [
-                    { name: "Tổ hợp 1 (Thuần Kỹ thuật Công nghệ):", môn: "Vật lý, Hóa học, Tin học, Công nghệ", note: "Phù hợp nhất cho CNTT, Khoa học dữ liệu, Robot, Tự động hóa." },
-                    { name: "Tổ hợp 2 (Ứng dụng thực tế):", môn: "Vật lý, Hóa học, Tin học, Giáo dục Kinh tế & Pháp luật", note: "Dành cho bạn nào muốn làm quản lý dự án công nghệ hoặc làm kỹ thuật nhưng có hiểu biết kinh tế." }
-                ]
-            },
-            sucKhoe: {
-                title: "BAN KHOA HỌC TỰ NHIÊN (Định hướng Khoa học Sức khỏe & Y sinh)",
-                desc: "Hồ sơ tư duy của bạn hướng mạnh về việc nghiên cứu vật chất tự nhiên, sự sống và y học. Bạn thích hợp với lộ trình đào tạo kiên trì, sâu sắc liên quan đến khoa học sự sống.",
-                color: "#10b981",
-                tohop: [
-                    { name: "Tổ hợp 1 (Thuần Y Dược nghiên cứu):", môn: "Vật lý, Hóa học, Sinh học, Tin học", note: "Tổ hợp kinh điển phục vụ xét tuyển khối B00 vào Y đa khoa, Dược học, Xét nghiệm." },
-                    { name: "Tổ hợp 2 (Y sinh ứng dụng công nghệ):", môn: "Hóa học, Sinh học, Công nghệ, Địa lý", note: "Tối ưu cho ngành Công nghệ thực phẩm, Môi trường, Nông nghiệp công nghệ cao." }
-                ]
-            },
-            kinhTe: {
-                title: "BAN GIAO THOA (Định hướng Kinh tế, Quản trị & Ngoại thương)",
-                desc: "Bạn sở hữu chỉ số nhạy bén thị trường tốt, có sự cân bằng tuyệt vời giữa tư duy phân tích con số và khả năng tương tác cộng đồng. Đây là khối ngành có biên độ chọn nghề cực rộng.",
-                color: "#d946ef",
-                tohop: [
-                    { name: "Tổ hợp 1 (Kinh tế - Xã hội hiện đại):", môn: "Vật lý, Địa lý, Giáo dục Kinh tế & Pháp luật, Tin học", note: "Rất mạnh cho các khối ngành Logistics, Quản trị kinh doanh, Phân tích dữ liệu kinh tế." },
-                    { name: "Tổ hợp 2 (Kinh tế sáng tạo):", môn: "Hóa học, Địa lý, Giáo dục Kinh tế & Pháp luật, Công nghệ", note: "Hợp với ngành Marketing, Thương mại điện tử, Quản trị khách sạn." }
-                ]
-            },
-            xaHoi: {
-                title: "BAN KHOA HỌC XÃ HỘI & NGÔN NGỮ TƯ DUY",
-                desc: "Trí thông minh ngôn ngữ và năng lực cảm xúc (EQ) cao là vũ khí cốt lõi của bạn. Bạn thích hợp tìm hiểu các quy luật xã hội, văn hóa, giao tiếp và kết nối con người.",
-                color: "#f59e0b",
-                tohop: [
-                    { name: "Tổ hợp 1 (Thuần Xã hội Nhân văn):", môn: "Lịch sử, Địa lý, Giáo dục Kinh tế & Pháp luật, Tin học", note: "Phục vụ ôn tập cực tốt cho ngành Luật, Tâm lý học, Báo chí, Sư phạm lịch sử." },
-                    { name: "Tổ hợp 2 (Ngôn ngữ - Du lịch - Giao tiếp):", môn: "Lịch sử, Địa lý, Tin học, Công nghệ", note: "Hướng đi mở rộng cho ngành Ngôn ngữ học, Quan hệ quốc tế, Hướng dẫn viên du lịch." }
-                ]
-            }
-        };
-
-        let currentQuestionIndex = 0;
-        let selectedAnswers = new Array(questions.length).fill(null);
-
-        function startQuiz() {
-            document.getElementById('start-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
-            showQuestion();
-        }
-
-        function showQuestion() {
-            const currentQuestion = questions[currentQuestionIndex];
+    <!-- Vùng hiển thị kết quả bài làm -->
+    <div id="result-container" class="quiz-section">
+        <div class="result-box">
+            <div class="result-title">🎉 ĐÃ HOÀN THÀNH BÀI KHẢO SÁT!</div>
+            <div id="suggested-major" class="result-desc">
+                Đang phân tích dữ liệu lựa chọn của bạn...
+            </div>
             
-            // Render Progress
-            const progressPercent = Math.round(((currentQuestionIndex) / questions.length) * 100);
-            document.getElementById('progress-fill').style.width = `${progressPercent}%`;
-            document.getElementById('progress-text').innerText = `Câu ${currentQuestionIndex + 1} trên ${questions.length}`;
-            document.getElementById('progress-percent').innerText = `${progressPercent}%`;
+            <!-- KHUNG CHÈN MÃ QR ZALO LIÊN HỆ HỖ TRỢ -->
+            <div class="qr-support-container">
+                <p style="font-weight: bold; color: #333; font-size: 16px;">Bạn cần tư vấn thêm về chọn ban và tổ hợp môn?</p>
+                <p style="font-size: 14px; color: #555;">Quét mã QR Zalo dưới đây để liên hệ nhận hỗ trợ trực tiếp:</p>
+                <img src="qr-zalo.png" alt="QR Zalo Hỗ Trợ" class="qr-image">
+            </div>
+        </div>
+    </div>
+</div>
 
-            // Render Title
-            document.getElementById('question-text').innerText = currentQuestion.text;
+<script>
+    // Lưu trữ câu trả lời của người dùng
+    const userAnswers = {
+        q1: '',
+        q2: ''
+    };
 
-            // Render Options
-            const optionsGrid = document.getElementById('options-grid');
-            optionsGrid.innerHTML = '';
+    // Hàm xử lý chọn đáp án
+    function selectOption(questionId, value, element) {
+        userAnswers[questionId] = value;
+        
+        // Bỏ chọn các đáp án cũ trong cùng câu hỏi
+        const siblings = element.parentNode.querySelectorAll('.option-item');
+        siblings.forEach(item => item.classList.remove('selected'));
+        
+        // Kích hoạt trạng thái được chọn cho đáp án hiện tại
+        element.classList.add('selected');
+    }
 
-            currentQuestion.options.forEach((option, index) => {
-                const div = document.createElement('div');
-                div.className = 'option-card';
-                if (selectedAnswers[currentQuestionIndex] === index) {
-                    div.classList.add('active');
-                }
-                div.innerText = option.text;
-                div.onclick = () => selectOption(index);
-                optionsGrid.appendChild(div);
-            });
+    // Hàm chuyển câu hỏi
+    function nextQuestion(currentNum) {
+        if (!userAnswers['q' + currentNum]) {
+            alert('Vui lòng chọn một đáp án trước khi tiếp tục!');
+            return;
+        }
+        document.getElementById('q' + currentNum).classList.remove('active');
+        document.getElementById('q' + (currentNum + 1)).classList.add('active');
+    }
 
-            // Button states
-            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
-            document.getElementById('next-btn').disabled = selectedAnswers[currentQuestionIndex] === null;
-            document.getElementById('next-btn').innerText = (currentQuestionIndex === questions.length - 1) ? 'Phân tích kết quả' : 'Tiếp tục';
+    // Hàm tính toán và hiển thị kết quả
+    function showResult() {
+        if (!userAnswers.q2) {
+            alert('Vui lòng chọn một đáp án trước khi xem kết quả!');
+            return;
         }
 
-        function selectOption(optionIndex) {
-            selectedAnswers[currentQuestionIndex] = optionIndex;
-            const cards = document.querySelectorAll('.option-card');
-            cards.forEach((card, idx) => {
-                if (idx === optionIndex) card.classList.add('active');
-                else card.classList.remove('active');
-            });
-            document.getElementById('next-btn').disabled = false;
+        // Ẩn vùng câu hỏi, hiện vùng kết quả
+        document.getElementById('q2').classList.remove('active');
+        document.getElementById('result-container').classList.add('active');
+
+        // Logic gợi ý định hướng đơn giản dựa trên lựa chọn
+        let advice = "";
+        const choice = userAnswers.q1;
+
+        if (choice === 'A') {
+            advice = "<strong>Định hướng phù hợp: Khối Khoa học Tự nhiên & Công nghệ kỹ thuật.</strong><br>Bạn có xu hướng tư duy logic tốt. Bạn nên ưu tiên lựa chọn các tổ hợp môn học có chứa Toán, Lý, Hóa hoặc Tin học tại trường THPT để chuẩn bị cho các ngành nghề như Công nghệ thông tin, Kỹ thuật điện tử, Cơ khí hoặc Kinh tế tài chính.";
+        } else if (choice === 'B') {
+            advice = "<strong>Định hướng phù hợp: Khối Khoa học Sức khỏe & Sinh học thực nghiệm.</strong><br>Lựa chọn của bạn cho thấy bạn quan tâm đến tự nhiên và đời sống sinh học. Bạn nên chọn các tổ hợp môn lớp 10 có sự xuất hiện của Hóa học và Sinh học nhằm định hướng vào các ngành như Y Dược, Thú y, Công nghệ thực phẩm hoặc Khoa học môi trường.";
+        } else if (choice === 'C') {
+            advice = "<strong>Định hướng phù hợp: Khối Khoa học Xã hội & Nhân văn - Truyền thông.</strong><br>Bạn có thế mạnh và sự yêu thích dành cho ngôn ngữ, lịch sử và các vấn đề xã hội. Các tổ hợp có môn Ngữ văn, Lịch sử, Địa lí, Giáo dục Kinh tế & Pháp luật sẽ là bệ phóng tốt giúp bạn hướng tới ngành Luật, Báo chí, Ngôn ngữ, Sư phạm hoặc Quản trị.";
+        } else {
+            advice = "<strong>Định hướng phù hợp: Khối Nghệ thuật & Sáng tạo nội dung.</strong><br>Bạn sở hữu tâm hồn nghệ thuật hoặc yêu thích sự vận động sáng tạo. Ở bậc THPT, bạn nên chọn các nhóm môn học tự chọn liên quan đến Nghệ thuật (Mỹ thuật/Âm nhạc) hoặc Công nghệ, thúc đẩy cơ hội vào các ngành Thiết kế đồ họa, Kiến trúc hoặc Truyền thông đa phương tiện.";
         }
 
-        function nextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                showQuestion();
-            } else {
-                renderResults();
-            }
-        }
+        document.getElementById('suggested-major').innerHTML = advice;
+    }
+</script>
 
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                showQuestion();
-            }
-        }
-
-        function renderResults() {
-            let scores = { tuNghien: 0, sucKhoe: 0, kinhTe: 0, xaHoi: 0 };
-
-            selectedAnswers.forEach((optIdx, qIdx) => {
-                const itemScores = questions[qIdx].options[optIdx].scores;
-                for (const key in itemScores) {
-                    scores[key] += itemScores[key];
-                }
-            });
-
-            // Find highest ban
-            let topBan = 'tuNghien';
-            let maxVal = -1;
-            for (const key in scores) {
-                if (scores[key] > maxVal) {
-                    maxVal = scores[key];
-                    topBan = key;
-                }
-            }
-
-            const total = Object.values(scores).reduce((a, b) => a + b, 0);
-
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
-
-            // Set main info
-            const mainBanTitle = document.getElementById('main-ban');
-            mainBanTitle.innerText = banDetails[topBan].title;
-            mainBanTitle.style.color = banDetails[topBan].color;
-            document.getElementById('ban-description').innerHTML = banDetails[topBan].desc;
-
-            // Render Chart
-            const chartContent = document.getElementById('chart-content');
-            chartContent.innerHTML = '';
-            
-            const labels = {
-                tuNghien: "Ban Kỹ thuật & Công nghệ",
-                sucKhoe: "Ban Y tế & Sức khỏe",
-                kinhTe: "Ban Kinh tế & Quản trị",
-                xaHoi: "Ban Khoa học Xã hội"
-            };
-
-            for (const key in scores) {
-                const percent = total > 0 ? Math.round((scores[key] / total) * 100) : 0;
-                const row = document.createElement('div');
-                row.className = 'bar-row';
-                row.innerHTML = `
-                    <div class="bar-label">
-                        <span>${labels[key]}</span>
-                        <strong>${percent}%</strong>
-                    </div>
-                    <div class="bar-bg">
-                        <div class="bar-fill" style="width: ${percent}%; background-color: ${banDetails[key].color}"></div>
-                    </div>
-                `;
-                chartContent.appendChild(row);
-            }
-
-            // Render gợi ý tổ hợp môn
-            const tohopListContainer = document.getElementById('tohop-list');
-            tohopListContainer.innerHTML = '';
-            
-            banDetails[topBan].tohop.forEach(item => {
-                const box = document.createElement('div');
-                box.className = 'tohop-box';
-                box.innerHTML = `
-                    <div class="tohop-box-name">${item.name}</div>
-                    <div class="tohop-box-list">${item.môn}</div>
-                    <div class="tohop-box-note">🎯 Định hướng: ${item.note}</div>
-                `;
-                tohopListContainer.appendChild(box);
-            });
-        }
-
-        function restartQuiz() {
-            currentQuestionIndex = 0;
-            selectedAnswers = new Array(questions.length).fill(null);
-            document.getElementById('result-screen').classList.add('hidden');
-            document.getElementById('start-screen').classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
